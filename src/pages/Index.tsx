@@ -22,7 +22,7 @@ const Index = () => {
     return (
       <div className="dot-grid min-h-screen flex items-center justify-center">
         <div className="max-w-[390px] w-full flex flex-col items-center justify-center min-h-screen">
-          <img src={logo} alt="CryptoPay Niger" className="h-20 w-20 rounded-2xl mb-6" />
+          <img src={logo} alt="CryptoPay Niger" className="h-20 w-20 rounded-[18px] object-cover mb-6 shadow-lg" />
           <h1 className="font-urbanist font-black text-card-dark text-3xl mb-2">CryptoPay</h1>
           <p className="font-urbanist font-medium text-text-gray text-sm mb-8">Niger</p>
           <button
