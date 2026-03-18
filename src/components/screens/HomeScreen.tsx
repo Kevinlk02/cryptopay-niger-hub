@@ -42,7 +42,7 @@ export default function HomeScreen({ onNavigate }: HomeScreenProps) {
       {/* Top Bar */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <img src={logo} alt="CryptoPay" className="h-7 w-7 rounded-lg" />
+          <img src={logo} alt="CryptoPay" className="h-8 w-8 rounded-[8px] object-cover" />
           <span className="font-urbanist font-bold text-card-dark text-lg">CryptoPay</span>
         </div>
         <div className="flex items-center gap-2">
