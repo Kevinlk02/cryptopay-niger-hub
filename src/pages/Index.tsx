@@ -8,7 +8,7 @@ import ProfileScreen from "@/components/screens/ProfileScreen";
 import WalletScreen from "@/components/screens/WalletScreen";
 import ReceiveModal from "@/components/screens/ReceiveModal";
 import logo from "@/assets/logo.png";
-import { useState as useStateReact } from "react";
+
 
 type Screen = "home" | "market" | "wallet" | "profile" | "buy" | "send";
 
