@@ -122,3 +122,36 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Succès : cercle jaune qui apparaît puis ✓ */
+@keyframes pop-circle {
+  0% { transform: scale(0); }
+  70% { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+.success-circle-soft {
+  animation: pop-circle 420ms ease-out forwards;
+}
+
+/* Erreur de PIN */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+.shake {
+  animation: shake 400ms ease-in-out;
+}
+
+/* Attente paiement PI-SPI */
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(245, 230, 66, 0.45); }
+  100% { box-shadow: 0 0 0 22px rgba(245, 230, 66, 0); }
+}
+.pulse-ring {
+  animation: pulse-ring 1.4s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 1ms !important; transition-duration: 1ms !important; }
+}
