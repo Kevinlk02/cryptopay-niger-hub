@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Dossiers de travail des sessions Claude Code
+.claude/worktrees/

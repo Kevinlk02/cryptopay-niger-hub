@@ -1,30 +1,28 @@
 import { Home, TrendingUp, Plus, Wallet, User } from "lucide-react";
+import { useNav, type Tab } from "@/store/nav";
+import { useApp } from "@/store/AppStore";
+import type { TKey } from "@/lib/i18n";
 
-type Tab = "home" | "market" | "fab" | "wallet" | "profile";
-
-interface BottomNavProps {
-  active: Tab;
-  onNavigate: (tab: Tab) => void;
-  onFab: () => void;
-}
-
-const tabs: { id: Tab; label: string; icon: typeof Home }[] = [
-  { id: "home", label: "Accueil", icon: Home },
-  { id: "market", label: "Marché", icon: TrendingUp },
+const tabs: { id: Tab | "fab"; label: TKey | ""; icon: typeof Home }[] = [
+  { id: "home", label: "nav.home", icon: Home },
+  { id: "market", label: "nav.market", icon: TrendingUp },
   { id: "fab", label: "", icon: Plus },
-  { id: "wallet", label: "Wallet", icon: Wallet },
-  { id: "profile", label: "Profil", icon: User },
+  { id: "wallet", label: "nav.wallet", icon: Wallet },
+  { id: "profile", label: "nav.profile", icon: User },
 ];
 
-export default function BottomNav({ active, onNavigate, onFab }: BottomNavProps) {
+export default function BottomNav() {
+  const { tab: active, go } = useNav();
+  const { t } = useApp();
   return (
-    <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[390px] h-16 bg-white border-t border-border-sand flex items-end justify-around px-2 z-50">
+    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[390px] h-16 bg-white border-t border-border-sand flex items-end justify-around px-2 z-50">
       {tabs.map((tab) => {
         if (tab.id === "fab") {
           return (
             <button
               key="fab"
-              onClick={onFab}
+              onClick={() => go({ name: "buy" })}
+              aria-label="Acheter"
               className="press-scale relative -top-4 w-14 h-14 rounded-full bg-yellow flex items-center justify-center"
               style={{ boxShadow: "0 0 0 6px #F0EDE6" }}
             >
@@ -37,16 +35,15 @@ export default function BottomNav({ active, onNavigate, onFab }: BottomNavProps)
         return (
           <button
             key={tab.id}
-            onClick={() => onNavigate(tab.id)}
-            className="press-scale flex flex-col items-center justify-center gap-0.5 pt-2 pb-1 min-w-[56px]"
+            onClick={() => go({ name: tab.id as Tab })}
+            aria-current={isActive ? "page" : undefined}
+            className="press-scale flex flex-col items-center justify-center gap-0.5 pt-2 pb-1.5 min-w-[56px]"
           >
             <Icon size={22} className={isActive ? "text-card-dark" : "text-[#AAAAAA]"} strokeWidth={isActive ? 2.5 : 2} />
-            <span className={`text-[10px] font-urbanist ${isActive ? "font-bold text-card-dark" : "font-medium text-[#AAAAAA]"}`}>
-              {tab.label}
-            </span>
+            <span className={`text-[10px] font-urbanist ${isActive ? "font-bold text-card-dark" : "font-medium text-[#AAAAAA]"}`}>{tab.label ? t(tab.label) : ""}</span>
           </button>
         );
       })}
-    </div>
+    </nav>
   );
 }
